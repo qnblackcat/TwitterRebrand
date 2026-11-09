@@ -1,0 +1,9 @@
+Package: com.qn.twitterrebrand
+Name: TwitterRebrand
+Depends: mobilesubstrate, firmware (>= 15.0)
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Show X as Twitter: app name, Home Screen icon, launch screen and in-app glyphs
+Maintainer: Qn <qnblackcat@gmail.com>
+Author: Qn <qnblackcat@gmail.com>
+Section: Tweaks

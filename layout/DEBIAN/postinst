@@ -1,0 +1,17 @@
+#!/bin/sh
+# The launch screen is drawn by splashboardd, which loads the tweak only when it starts,
+# and it reuses the snapshots it saved earlier in Twitter's container. Delete those
+# snapshots, then restart the daemon (launchd brings it back).
+PATH="/var/jb/usr/bin:/var/jb/bin:/usr/bin:/bin:$PATH"
+
+# /rootfs is the real root on roothide; rootless and rootful see the real /var directly.
+for root in /rootfs/private/var/mobile /var/mobile; do
+    for container in "$root"/Containers/Data/Application/*; do
+        if grep -qa "com.atebits.Tweetie2" "$container/.com.apple.mobile_container_manager.metadata.plist" 2>/dev/null; then
+            rm -rf "$container/Library/SplashBoard/Snapshots"
+        fi
+    done
+done
+
+killall -9 splashboardd 2>/dev/null
+exit 0
